@@ -1,9 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 #
 # Settings
 #
-src_dir=$(dirname $0)
+src_dir="$(dirname $0)/.."
+src_dir="$(readlink -f $src_dir)"
+
+echo "[+] source dir: $src_dir"
+
 backup_dir="$HOME/.backup"
 install_files=(".zshrc" 
                ".antigen-repo" 
@@ -20,20 +24,20 @@ create_backup_dir() {
     mkdir -p $backup_dir
 }
 
-install_file() {
-    if [[ ! -f "$1" ]] 
+install_component() {
+    if [[ (( ! -f "$1" )) && (( ! -d "$1" )) ]] 
     then
         return
     fi
     echo "installing \"$1\"..."
     
     name=$(basename "$1")
-    dest="~/$name"
+    dest="$HOME/$name"
     
-    if [[ -f "$dest" ]]
+    if [[ (( -f "$dest" )) || (( -d "$dest" )) ]]
     then
         echo "backing up $dest to \"$backup_dir/$name\""
-        mv -rf "$dest" "$backup_dir/$name"
+        mv -f "$dest" "$backup_dir/$name"
     fi
     
     ln -sfn "$1" "$dest"
@@ -43,5 +47,5 @@ create_backup_dir
 
 for file in ${install_files[@]}
 do
-    install_file "$src_dir/$file"
+    install_component "$src_dir/$file"
 done
