@@ -1,0 +1,3 @@
+[submodule ".antigen-repo"]
+	path = .antigen-repo
+	url = /Users/drk/.antigen-repo
