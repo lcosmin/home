@@ -11,7 +11,6 @@ common() {
     antigen bundle git-extras
     antigen bundle pip
     antigen bundle git-flow
-    antigen bundle virtualenvwrapper
 
     antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -53,7 +52,7 @@ case "$(machine_tag)" in
         work_common
         antigen bundle ~/.oh-my-zsh-plugins/proxy
         # Update the prompt
-        if [[ -z "${SCHROOT_CHROOT_NAME}" ]]
+        if [[ ! -z "${SCHROOT_CHROOT_NAME}" ]]
         then
             export PS1="[chroot:${SCHROOT_CHROOT_NAME}] $PS1"
         else
