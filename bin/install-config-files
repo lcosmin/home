@@ -11,7 +11,8 @@ echo "[+] source dir: $src_dir"
 backup_dir="$HOME/.backup"
 install_files=(".zshrc" 
                ".antigen-repo" 
-               ".oh-my-zsh-plugins")
+               ".oh-my-zsh-plugins"
+               ".oh-my-zsh-work-plugins")
 
 
 die() {
