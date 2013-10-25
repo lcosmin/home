@@ -43,7 +43,7 @@ common() {
 }
 
 work_common() {
-    antigen bundle ~/.oh-my-zsh-plugins/buildfarm
+    antigen bundle ~/.oh-my-zsh-work-plugins/buildfarm
 }
 
 common
@@ -54,7 +54,7 @@ case "$(machine_tag)" in
         work_common
         
         antigen bundle archlinux
-        antigen bundle ~/.oh-my-zsh-plugins/proxy
+        antigen bundle ~/.oh-my-zsh-work-plugins/proxy
         # Update the prompt
         if [[ ! -z "${SCHROOT_CHROOT_NAME}" ]]
         then
