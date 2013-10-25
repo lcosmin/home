@@ -11,6 +11,8 @@ common() {
     antigen bundle git-extras
     antigen bundle pip
     antigen bundle git-flow
+    antigen bundle gpg-agent
+    antigen bundle history
 
     antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -50,6 +52,8 @@ case "$(machine_tag)" in
     "work_desktop")
         echo "[+] Loading work settings..."
         work_common
+        
+        antigen bundle archlinux
         antigen bundle ~/.oh-my-zsh-plugins/proxy
         # Update the prompt
         if [[ ! -z "${SCHROOT_CHROOT_NAME}" ]]
@@ -64,8 +68,15 @@ case "$(machine_tag)" in
         echo "[+] Loading MacOS settings..."
         work_common
         antigen bundle brew
+        antigen bundle osx
         export PS1="[mac] $PS1"
         ;;
+        
+    "home")
+        echo "[+] Loading home settings..."
+        antigen bundle archlinux
+        ;;
+        
     *)
         echo "[+] Loading default settings..."
         ;;
