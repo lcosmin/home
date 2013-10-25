@@ -1,3 +1,6 @@
 [submodule ".antigen-repo"]
 	path = .antigen-repo
 	url = https://github.com/zsh-users/antigen.git
+[submodule ".oh-my-zsh-work-plugins"]
+	path = .oh-my-zsh-work-plugins
+	url = git@github.dtc.avira.com:cosmin-luta/home-work-plugins.git
