@@ -4,7 +4,8 @@ _ssh_add() {
 
     if [[ ! -z "$(cat $key | grep 'PRIVATE KEY')" ]]
     then
-        if [[ -z "$(ssh-add -l | grep $key)" ]]
+        fingerprint=$(ssh-keygen -l -f "$key" | awk '{print $2}')
+        if [[ -z "$(ssh-add -l | grep $fingerprint)" ]]
         then
             echo "[->] adding ssh key $key"
             ssh-add "$key"
