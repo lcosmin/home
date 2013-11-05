@@ -21,7 +21,6 @@ common() {
 
     # PyENV
     antigen bundle ~/.oh-my-zsh-plugins/pyenv
-    antigen bundle ~/.oh-my-zsh-plugins/lcosmin
 
     # Add my SSH keys to ssh-agent
     antigen bundle ~/.oh-my-zsh-plugins/ssh-keys
