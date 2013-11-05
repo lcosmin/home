@@ -44,6 +44,8 @@ common() {
 
 work_common() {
     antigen bundle ~/.oh-my-zsh-work-plugins/buildfarm
+    antigen bundle ~/.oh-my-zsh-work-plugins/aliases
+    antigen bundle ~/.oh-my-zsh-work-plugins/env
 }
 
 common
@@ -55,6 +57,7 @@ case "$(machine_tag)" in
         
         antigen bundle archlinux
         antigen bundle ~/.oh-my-zsh-work-plugins/proxy
+        
         # Update the prompt
         if [[ ! -z "${SCHROOT_CHROOT_NAME}" ]]
         then
@@ -71,12 +74,12 @@ case "$(machine_tag)" in
         antigen bundle osx
         export PS1="[mac] $PS1"
         ;;
-        
+
     "home")
         echo "[+] Loading home settings..."
         antigen bundle archlinux
         ;;
-        
+
     *)
         echo "[+] Loading default settings..."
         ;;
