@@ -11,7 +11,7 @@ common() {
     antigen bundle git-extras
     antigen bundle pip
     antigen bundle git-flow
-    antigen bundle gpg-agent
+    #antigen bundle gpg-agent
     antigen bundle history
 
     antigen bundle zsh-users/zsh-syntax-highlighting
