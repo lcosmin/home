@@ -7,10 +7,6 @@ common() {
     export PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
 
     echo "[+] Loading common settings..."
-    antigen bundle git
-    antigen bundle git-extras
-    antigen bundle pip
-    antigen bundle git-flow
     #antigen bundle gpg-agent
     antigen bundle history
 
@@ -19,8 +15,6 @@ common() {
     # Load machine tag support
     antigen bundle ~/.oh-my-zsh-plugins/machine-tag
 
-    # PyENV
-    antigen bundle ~/.oh-my-zsh-plugins/pyenv
 
     # Add my SSH keys to ssh-agent
     antigen bundle ~/.oh-my-zsh-plugins/ssh-keys
@@ -41,6 +35,19 @@ common() {
     antigen-theme philips
 }
 
+
+devel_common() {
+    # PyENV
+    antigen bundle ~/.oh-my-zsh-plugins/pyenv
+
+    antigen bundle git
+    antigen bundle git-extras
+    antigen bundle pip
+    antigen bundle git-flow
+
+}
+
+
 work_common() {
     antigen bundle ~/.oh-my-zsh-work-plugins/buildfarm
     antigen bundle ~/.oh-my-zsh-work-plugins/aliases
@@ -53,6 +60,8 @@ case "$(machine_tag)" in
     "work_desktop")
         echo "[+] Loading work settings..."
         work_common
+        
+        devel_common
         
         antigen bundle archlinux
         antigen bundle ~/.oh-my-zsh-work-plugins/proxy
@@ -69,6 +78,9 @@ case "$(machine_tag)" in
     "work_macos")
         echo "[+] Loading MacOS settings..."
         work_common
+        
+        devel_common
+        
         antigen bundle brew
         antigen bundle osx
         export PS1="[mac] $PS1"
@@ -76,9 +88,14 @@ case "$(machine_tag)" in
 
     "home")
         echo "[+] Loading home settings..."
+        devel_common
         antigen bundle archlinux
         ;;
-
+    
+    "storage")
+        echo "[+] Loading storage settings..."
+        ;;
+    
     *)
         echo "[+] Loading default settings..."
         ;;
