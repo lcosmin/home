@@ -3,7 +3,7 @@ source ~/.antigen-repo/antigen.zsh
 
 antigen use oh-my-zsh
 
-common() {
+_common() {
     export PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
 
     echo "[+] Loading common settings..."
@@ -36,7 +36,7 @@ common() {
 }
 
 
-devel_common() {
+_devel_common() {
     # PyENV
     antigen bundle ~/.oh-my-zsh-plugins/pyenv
 
@@ -48,20 +48,20 @@ devel_common() {
 }
 
 
-work_common() {
+_work_common() {
     antigen bundle ~/.oh-my-zsh-work-plugins/buildfarm
     antigen bundle ~/.oh-my-zsh-work-plugins/aliases
     antigen bundle ~/.oh-my-zsh-work-plugins/env
 }
 
-common
+_common
 
 case "$(machine_tag)" in
     "work_desktop")
         echo "[+] Loading work settings..."
-        work_common
+        _work_common
         
-        devel_common
+        _devel_common
         
         antigen bundle archlinux
         antigen bundle ~/.oh-my-zsh-work-plugins/proxy
@@ -77,9 +77,9 @@ case "$(machine_tag)" in
 
     "work_macos")
         echo "[+] Loading MacOS settings..."
-        work_common
+        _work_common
         
-        devel_common
+        _devel_common
         
         antigen bundle brew
         antigen bundle osx
@@ -88,7 +88,7 @@ case "$(machine_tag)" in
 
     "home")
         echo "[+] Loading home settings..."
-        devel_common
+        _devel_common
         antigen bundle archlinux
         ;;
     
@@ -100,6 +100,10 @@ case "$(machine_tag)" in
         echo "[+] Loading default settings..."
         ;;
 esac
+
+unfunction _common
+unfunction _work_common
+unfunction _devel_common
 
 antigen-apply
 
