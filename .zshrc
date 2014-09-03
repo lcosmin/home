@@ -15,6 +15,9 @@ _common() {
     # Load machine tag support
     antigen bundle ~/.oh-my-zsh-plugins/machine-tag
 
+    # Set locale
+    antigen bundle ~/.oh-my-zsh-plugins/locale
+
 
     # Add my SSH keys to ssh-agent
     antigen bundle ~/.oh-my-zsh-plugins/ssh-keys
