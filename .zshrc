@@ -94,7 +94,7 @@ case "$(machine_tag)" in
     "home")
         echo "[+] Loading home settings..."
         _devel_common
-        antigen bundle archlinux
+        #antigen bundle archlinux
         ;;
     
     "storage")
