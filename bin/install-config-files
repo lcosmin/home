@@ -3,8 +3,18 @@
 #
 # Settings
 #
+
+greadlink --version >/dev/null 2>&1
+if [[ $? -eq 0 ]]
+then
+    READLINK=greadlink
+else
+    READLINK=readlink
+fi
+
+
 src_dir="$(dirname $0)/.."
-src_dir="$(readlink -f $src_dir)"
+src_dir="$(${READLINK} -f $src_dir)"
 
 echo "[+] source dir: $src_dir"
 
