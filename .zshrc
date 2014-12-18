@@ -18,6 +18,8 @@ _common() {
     # Set locale
     antigen bundle ~/.oh-my-zsh-plugins/locale
 
+    # Enable Z
+    antigen bundle z
 
     # Add my SSH keys to ssh-agent
     antigen bundle ~/.oh-my-zsh-plugins/ssh-keys
