@@ -49,7 +49,6 @@ _devel_common() {
     antigen bundle git-extras
     antigen bundle pip
     antigen bundle git-flow
-
 }
 
 
@@ -94,6 +93,7 @@ case "$(machine_tag)" in
     "home")
         echo "[+] Loading home settings..."
         _devel_common
+        antigen bundle ~/.oh-my-zsh-plugins/go
         #antigen bundle archlinux
         ;;
     
@@ -114,3 +114,6 @@ antigen-apply
 
 setopt incappendhistory
 unsetopt sharehistory
+
+# added by travis gem
+[ -f /home/drk/.travis/travis.sh ] && source /home/drk/.travis/travis.sh
