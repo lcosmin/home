@@ -44,7 +44,7 @@ _common() {
 _devel_common() {
     # PyENV
     antigen bundle ~/.oh-my-zsh-plugins/pyenv
-
+    antigen bundle ~/.oh-my-zsh-plugins/go
     antigen bundle git
     antigen bundle git-extras
     antigen bundle pip
