@@ -8,6 +8,7 @@ _common() {
 
     echo "[+] Loading common settings..."
     #antigen bundle gpg-agent
+    #antigen bundle ssh-agent
     antigen bundle history
 
     antigen bundle zsh-users/zsh-syntax-highlighting
@@ -53,7 +54,7 @@ _devel_common() {
 
 
 _work_common() {
-    antigen bundle ~/.oh-my-zsh-work-plugins/buildfarm
+    #antigen bundle ~/.oh-my-zsh-work-plugins/buildfarm
     antigen bundle ~/.oh-my-zsh-work-plugins/aliases
     antigen bundle ~/.oh-my-zsh-work-plugins/env
 }
