@@ -4,8 +4,8 @@
 # Settings
 #
 
-greadlink --version >/dev/null 2>&1
-if [[ $? -eq 0 ]]
+
+if (( $+commands[greadlink] ))
 then
     READLINK=greadlink
 else
@@ -18,8 +18,9 @@ src_dir="$(${READLINK} -f $src_dir)"
 
 echo "[+] source dir: $src_dir"
 
-
 setopt EXTENDED_GLOB
+
+rm -rf "${ZDOTDIR:-$HOME}"/.zprezto
 
 ln -sf "${src_dir}/.zprezto" "${ZDOTDIR:-$HOME}"/.zprezto
 
