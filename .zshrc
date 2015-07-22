@@ -9,9 +9,9 @@ _common() {
     echo "[+] Loading common settings..."
     #antigen bundle gpg-agent
     #antigen bundle ssh-agent
-    antigen bundle history
+    #antigen bundle history
 
-    antigen bundle zsh-users/zsh-syntax-highlighting
+    #antigen bundle zsh-users/zsh-syntax-highlighting
 
     # Load machine tag support
     antigen bundle ~/.oh-my-zsh-plugins/machine-tag
@@ -43,13 +43,14 @@ _common() {
 
 
 _devel_common() {
-    # PyENV
-    antigen bundle ~/.oh-my-zsh-plugins/pyenv
-    antigen bundle ~/.oh-my-zsh-plugins/go
     antigen bundle git
     antigen bundle git-extras
     antigen bundle pip
     antigen bundle git-flow
+
+    # PyENV
+    antigen bundle ~/.oh-my-zsh-plugins/pyenv
+    antigen bundle ~/.oh-my-zsh-plugins/go
 }
 
 
@@ -65,9 +66,7 @@ case "$(machine_tag)" in
     "work_desktop")
         echo "[+] Loading work settings..."
         _work_common
-        
         _devel_common
-        
         antigen bundle archlinux
         antigen bundle ~/.oh-my-zsh-work-plugins/proxy
         
@@ -83,10 +82,11 @@ case "$(machine_tag)" in
     "work_macos")
         echo "[+] Loading MacOS settings..."
         _work_common
-        
         _devel_common
-        
+
+        echo "[$(date)] Loading brew..."
         antigen bundle brew
+        echo "[$(date)] Loading osx..."
         antigen bundle osx
         export PS1="[mac] $PS1"
         ;;
@@ -111,10 +111,10 @@ unfunction _common
 unfunction _work_common
 unfunction _devel_common
 
+echo "[$(date)] antigen-apply"
 antigen-apply
+echo "[$(date)] done"
 
 setopt incappendhistory
 unsetopt sharehistory
 
-# added by travis gem
-[ -f /home/drk/.travis/travis.sh ] && source /home/drk/.travis/travis.sh
