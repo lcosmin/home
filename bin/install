@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env zsh -x
 
 #
 # Settings
@@ -18,47 +18,13 @@ src_dir="$(${READLINK} -f $src_dir)"
 
 echo "[+] source dir: $src_dir"
 
-backup_dir="$HOME/.backup"
-install_files=(".zshrc"
-               ".antigen"
-               ".antigen-repo"
-               ".tmux.conf"
-               ".oh-my-zsh-plugins"
-               ".oh-my-zsh-work-plugins")
 
+setopt EXTENDED_GLOB
 
-die() {
-    echo "$1"
-    exit 1
-}
+ln -sf "${src_dir}/.zprezto" "${ZDOTDIR:-$HOME}"/.zprezto
 
-create_backup_dir() {
-    [[ -d "$HOME" ]] || die "Home directory doesn't exist!"
-    mkdir -p $backup_dir
-}
-
-install_component() {
-    if [[ (( ! -f "$1" )) && (( ! -d "$1" )) ]] 
-    then
-        return
-    fi
-    echo "installing \"$1\"..."
-    
-    name=$(basename "$1")
-    dest="$HOME/$name"
-    
-    if [[ (( -f "$dest" )) || (( -d "$dest" )) ]]
-    then
-        echo "backing up $dest to \"$backup_dir/$name\""
-        mv -f "$dest" "$backup_dir/$name"
-    fi
-    
-    ln -sfn "$1" "$dest"
-}
-
-create_backup_dir
-
-for file in ${install_files[@]}
-do
-    install_component "$src_dir/$file"
+for rcfile in "${src_dir}"/.zprezto/runcoms/^README.md(.N) "${src_dir}"/*(.); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
+
+
