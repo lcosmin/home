@@ -1,2 +1,2 @@
-zplug "lcosmin/zsh", from:github, use:"aliases/init.zsh"
+zplug "lcosmin/zsh", from:github, use:"aliases-work/init.zsh"
 
