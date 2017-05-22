@@ -8,8 +8,6 @@ zplug "modules/python", from:prezto, frozen:1
 zplug "nojhan/liquidprompt", from:github
 
 zplug "lcosmin/zsh", from:github, use:"env/init.zsh"
-zplug "lcosmin/zsh", from:github, use:"aliases/init.zsh"
-
 
 
 #
