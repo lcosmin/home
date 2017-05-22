@@ -166,13 +166,18 @@ def main():
     p = argparse.ArgumentParser()
 
     p.add_argument("-n", "--dry-run", help="Only display the operations that will be executed", action="store_true")
+    p.add_argument("-p", "--package", help="Package to install", action="append")
 
     args = p.parse_args()
 
     config = env_context()
     print(config)
 
-    install_package("zsh", config, dry_run=args.dry_run)
+    if not args.package:
+        p.error("no packages specified to install")
+
+    for p in args.package:
+        install_package(p, config, dry_run=args.dry_run)
 
 
 if __name__ == "__main__":
