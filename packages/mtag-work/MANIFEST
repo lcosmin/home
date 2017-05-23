@@ -1,0 +1,3 @@
+install:
+  - pattern: aliases-work.zsh
+    dest: ~/.zsh.d
