@@ -96,7 +96,7 @@ def install_package(name, ctx, dest=None, backup=True, dry_run=False):
     try:
         manifest_path = path_join(pkg_path, PKG_MANIFEST)
         with open(manifest_path) as f:
-            manifest = yaml.load(f)
+            manifest = yaml.safe_load(f)
             log.debug("package {}: loaded manifest file".format(manifest_path))
     except OSError as e:
         log.warning("no {} for package {}".format(PKG_MANIFEST, name))
