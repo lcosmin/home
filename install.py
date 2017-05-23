@@ -1,43 +1,4 @@
 # coding: utf-8
-"""
-
-.dotfiles
-├── backups
-    ├──  <datetimestamp>
-├── packages
-    \- a
-       \- install.yaml
-       \- .zshrc
-       \- .zhistory
-    \- b
-    \- another
-
-----------------------------
-
-Packages have the following structure:
-
-package's MANIFEST:
-
-
-dest: {{ home }}
-
-<filespec>:
-  install_mode: "symlink|copy"
-  backup: True (default)
-  template: True (default)
-
-<filespec2>:
-  install_mode: "symlink|copy"
-  backup: True (default)
-  template: True (default)
-
-...
-
-----------------------------
-
-
-
-"""
 
 import argparse
 import os
@@ -47,8 +8,9 @@ import logging
 import shutil
 from os.path import join as path_join
 
-from utils import common_suffix, machine_tag, env_context
+from utils import common_suffix, get_machine_tag, get_env_config, get_available_packages
 
+# TODO: add package dependencies ?
 
 logging.basicConfig(level=logging.DEBUG, format="[%(levelname)8s] : %(message)s")
 log = logging.getLogger("install")
@@ -88,38 +50,20 @@ def install_from_pkg(ctx, what, pkg_root, backup=True, dest=None, dry_run=False)
             log.error("error making dirs {}: {}".format(dst_dir, e))
             return
 
-    # check if destination already exists; in this case, backup, but without overwriting the backup if it's there.
-    if os.path.exists(dst_file):
-        if backup:
-            log.warning("backup {} : not implemented".format(dst_file))
-
-        if os.path.isfile(dst_file) or os.path.islink(dst_file):
-            log.info("cleaning file {}".format(dst_file))
-            if not dry_run:
-                os.unlink(dst_file)
-        elif os.path.isdir(dst_file):
-            log.info("cleaning dir {}".format(dst_file))
-            if not dry_run:
-                shutil.rmtree(dst_file)
+    if os.path.isfile(dst_file) or os.path.islink(dst_file):
+        # TODO: backup
+        log.info("cleaning file {}".format(dst_file))
+        if not dry_run:
+            os.unlink(dst_file)
+    elif os.path.isdir(dst_file):
+        # TODO: backup
+        log.info("cleaning dir {}".format(dst_file))
+        if not dry_run:
+            shutil.rmtree(dst_file)
 
     log.info("symlink-ing {} to {}".format(what, dst_file))
     if not dry_run:
         os.symlink(what, dst_file)
-
-
-def makedirs(path, mode=None, mirror_from=None):
-    """
-    Improved makedirs which mirror the permissions of a given hierarchy
-
-    :param path: the full path to create, e.g. /home/user/some/directory
-    :param mode: mode to set on the created directories; if set, behaves as os.makedirs
-    :param mirror_from: another full path to a directory which to copy permissions from,
-                        e.g. /tmp/mirror/some/directory. some/directory will have
-                        their permissions copied.
-
-    """
-    if mode is not None:
-        return os.makedirs(path, mode)
 
 
 def install_package(name, ctx, backup=True, dest=None, dry_run=False):
@@ -162,22 +106,61 @@ def install_package(name, ctx, backup=True, dest=None, dry_run=False):
                 install_from_pkg(ctx, item, pkg_path, backup=backup, dest=dest, dry_run=dry_run)
 
 
+def install_profile(profile, config, dry_run=False):
+    """
+    Install a profile.
+
+    Configuration file looks like:
+
+    packages:
+    - zsh
+    - tmux
+    - ...
+
+    """
+    profile_path = path_join(config["source"], "profiles", profile)
+    if not os.path.isfile(profile_path):
+        log.error("can't find profile {} (looked in: {})".format(profile, profile_path))
+
+    with open(profile_path) as f:
+        data = yaml.safe_load(f)
+
+    if "packages" not in data:
+        log.error("invalid profile configuration")
+        return
+
+    for package in data.get("packages", []):
+        install_package(package, config, dry_run=dry_run)
+
+
 def main():
     p = argparse.ArgumentParser()
 
-    p.add_argument("-n", "--dry-run", help="Only display the operations that will be executed", action="store_true")
-    p.add_argument("-p", "--package", help="Package to install", action="append")
+    config = get_env_config()
+
+    p.add_argument("-n", "--dry-run", help="only display the operations that will be executed", action="store_true")
+    p.add_argument("-p", "--packages", help="specify packages to install (comma delimited)")
+    p.add_argument("-P", "--profile", help="install specified profile (machine tag: {})".format(config["machine_tag"]))
+    p.add_argument("-l", "--list", help="list available packages", action="store_true")
+    p.add_argument("-d", "--dump-config", help="show configuration", action="store_true")
 
     args = p.parse_args()
 
-    config = env_context()
-    print(config)
+    if args.list:
+        log.info("Available packages:")
+        for p in get_available_packages(config["source"]):
+            log.info("- {}".format(p))
+        return
 
-    if not args.package:
-        p.error("no packages specified to install")
+    if args.dump_config:
+        log.info(config)
 
-    for p in args.package:
-        install_package(p, config, dry_run=args.dry_run)
+    if args.profile:
+        install_profile(args.profile, config, dry_run=args.dry_run)
+
+    if args.packages:
+        for p in args.packages.split(","):
+            install_package(p, config, dry_run=args.dry_run)
 
 
 if __name__ == "__main__":
