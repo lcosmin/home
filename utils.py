@@ -7,6 +7,10 @@ from pathlib import Path
 
 log = logging.getLogger("utils")
 
+def really_exists(path):
+    # os.path.exists() returns False for broken links
+    return os.path.exists(path) or os.path.islink(path)
+    
 
 def makedirs(path, mode=None, mirror_from=None):
     """
