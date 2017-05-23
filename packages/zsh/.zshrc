@@ -13,7 +13,7 @@ zplug "lcosmin/zsh", from:github, use:"env/init.zsh"
 #
 # Load files from .zsh.d
 #
-if [[ -d "~/.zsh.d" ]]
+if [[ -d ~/.zsh.d ]]
 then
     for f in ~/.zsh.d/*
     do
