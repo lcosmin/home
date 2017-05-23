@@ -2,3 +2,4 @@ packages:
 - zsh
 - tmux
 - mtag-work
+- fzf
