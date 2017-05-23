@@ -1,3 +1,4 @@
 install:
-  - glob: fzf.zsh
-    dest: ~/.zsh.d
+  - pattern: fzf.zsh
+
+  - pattern: .fzf
