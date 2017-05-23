@@ -1,0 +1,3 @@
+install:
+  - glob: fzf.zsh
+    dest: ~/.zsh.d

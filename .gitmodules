@@ -1,3 +1,6 @@
 [submodule "packages/zsh/.zplug"]
 	path = packages/zsh/.zplug
 	url = https://github.com/zplug/zplug
+[submodule "packages/fzf/.fzf"]
+	path = packages/fzf/.fzf
+	url = https://github.com/junegunn/fzf.git
