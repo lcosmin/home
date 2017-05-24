@@ -3,3 +3,4 @@ packages:
 - tmux
 - mtag-work
 - fzf
+- liquidprompt
