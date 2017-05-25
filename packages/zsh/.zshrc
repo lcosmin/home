@@ -1,5 +1,7 @@
 source ~/.zplug/init.zsh
 
+if ! $ZPLUG_CACHE_CLEAN; then
+
 zplug "modules/prompt", from:prezto, frozen:1
 zplug "modules/git", from:prezto, frozen:1
 zplug "modules/python", from:prezto, frozen:1
@@ -9,6 +11,7 @@ zplug "nojhan/liquidprompt", from:github
 
 zplug "lcosmin/zsh", from:github, use:"env/init.zsh"
 
+fi
 
 #
 # Load files from .zsh.d
