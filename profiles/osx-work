@@ -4,5 +4,6 @@ packages:
 - tmux
 - mtag-work
 - fzf
+- fasd
 - liquidprompt
 - mc

@@ -1,0 +1,3 @@
+install:
+  - pattern: fasd.zsh
+    dest: ~/.zsh.d
