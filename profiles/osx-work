@@ -1,4 +1,5 @@
 packages:
+- common
 - zsh
 - tmux
 - mtag-work

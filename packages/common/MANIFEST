@@ -1,0 +1,3 @@
+install:
+  - pattern: "*"
+    dest: ~/.zsh.d

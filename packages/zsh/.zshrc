@@ -3,8 +3,6 @@ source ~/.zplug/init.zsh
 zplug "modules/git", from:prezto, frozen:1
 zplug "modules/python", from:prezto, frozen:1
 
-zplug "lcosmin/zsh", from:github, use:"env/init.zsh"
-
 
 #
 # Load files from .zsh.d
