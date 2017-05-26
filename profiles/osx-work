@@ -5,3 +5,4 @@ packages:
 - mtag-work
 - fzf
 - liquidprompt
+- mc
