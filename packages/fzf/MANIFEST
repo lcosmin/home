@@ -1,4 +1,4 @@
 install:
   - pattern: fzf.zsh
-
+    dest: ~/.zsh.d
   - pattern: .fzf
