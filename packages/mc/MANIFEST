@@ -1,0 +1,3 @@
+install:
+  - pattern: mc
+    dest: ~/.config
