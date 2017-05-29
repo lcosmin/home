@@ -1,5 +1,5 @@
 install:
-  - pattern: liquidprompt.zsh
+  - pattern: 60_liquidprompt.zsh
     dest: ~/.zsh.d
   - pattern: liquidpromptrc
     dest: ~/.config
