@@ -15,3 +15,25 @@ alias ebrack='printf "\e[?2004h"'
 # disable bracketed paste mode
 alias dbrack='printf "\e[?2004l"'
 
+
+#
+# Common settings that i want
+#
+setopt sharehistory
+# don't overwrite existing files when redirecting 
+setopt noclobber
+# disable special treatment for !
+setopt nobanghist
+# record timestamps in the history file
+setopt extendedhistory
+setopt incappendhistory
+
+# use fcntl for locking the history file
+setopt histfcntllock
+
+setopt nonotify
+
+export HISTFILE="${HOME}/.zhistory"
+export HISTSIZE=10000
+export SAVEHIST=10000
+
