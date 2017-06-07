@@ -1,9 +1,5 @@
 source ~/.zplug/init.zsh
 
-zplug "modules/git", from:prezto, frozen:1
-zplug "modules/python", from:prezto, frozen:1
-
-
 #
 # Load files from .zsh.d
 #
