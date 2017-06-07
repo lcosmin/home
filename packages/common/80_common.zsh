@@ -22,8 +22,6 @@ alias dbrack='printf "\e[?2004l"'
 setopt sharehistory
 # don't overwrite existing files when redirecting 
 setopt noclobber
-# disable special treatment for !
-setopt nobanghist
 # record timestamps in the history file
 setopt extendedhistory
 setopt incappendhistory
