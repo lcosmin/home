@@ -1,5 +1,8 @@
 # Setup fzf
 # ---------
+# use exact match by default
+export FZF_DEFAULT_OPTIONS="-e"
+
 if [[ ! "$PATH" == *${HOME}/.fzf/bin* ]]; then
   export PATH="$PATH:${HOME}/.fzf/bin"
 fi
