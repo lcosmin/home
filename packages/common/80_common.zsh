@@ -17,7 +17,7 @@ alias dbrack='printf "\e[?2004l"'
 
 
 #
-# Common settings that i want
+# Common settings that I want
 #
 setopt sharehistory
 # don't overwrite existing files when redirecting 
@@ -34,4 +34,7 @@ setopt nonotify
 export HISTFILE="${HOME}/.zhistory"
 export HISTSIZE=10000
 export SAVEHIST=10000
+
+# set a more restrictive umask
+umask 077
 
