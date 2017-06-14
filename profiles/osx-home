@@ -1,0 +1,10 @@
+packages:
+- vim
+- common
+- zsh
+- tmux
+- fzf
+- fasd
+- liquidprompt
+- mc
+- develop
