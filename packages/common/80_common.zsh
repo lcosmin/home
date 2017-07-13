@@ -16,6 +16,31 @@ alias ebrack='printf "\e[?2004h"'
 alias dbrack='printf "\e[?2004l"'
 
 
+darwin() {
+    # Enable colors and trailing slashes for ls
+    alias ls="ls -G -F"
+}
+
+linux() {
+    alias ls="ls --color=auto"
+}
+
+
+case "$(uname -s)" in
+    Darwin)
+	darwin
+	;;
+
+    Linux)
+	linux
+	;;
+	
+    *)
+	echo ""
+	;;
+esac
+
+
 #
 # Common settings that I want
 #
