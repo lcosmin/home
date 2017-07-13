@@ -1,0 +1,6 @@
+install:
+  - pattern: .vimpagerrc
+    dest: "~"
+
+  - pattern: "90_vimpager.zsh"
+    dest: ~/.zsh.d
