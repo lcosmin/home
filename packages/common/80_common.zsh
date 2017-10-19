@@ -19,6 +19,7 @@ alias dbrack='printf "\e[?2004l"'
 darwin() {
     # Enable colors and trailing slashes for ls
     alias ls="ls -G -F"
+    export LANG="en_US.UTF-8"
 }
 
 linux() {
