@@ -19,6 +19,10 @@ alias dbrack='printf "\e[?2004l"'
 darwin() {
     # Enable colors and trailing slashes for ls
     alias ls="ls -G -F"
+    
+    # Set the LANG variable in OSX (should be disabled in iTERM, so that it doesn't set LC_CTYPE to a stupid 
+    # value like "UTF8", making ssh-ing into linux box a pain in the ass due to the invalid locale - of course
+    # there are other solutions too, but this seems resonably easy)
     export LANG="en_US.UTF-8"
 }
 
