@@ -16,7 +16,7 @@ if ! zplug check; then
     zplug install
 fi
 
-zplug load --verbose
+zplug load #--verbose
 
 
 SPACESHIP_PROMPT_ORDER=(
@@ -28,9 +28,7 @@ SPACESHIP_PROMPT_ORDER=(
   golang        # Go section
   venv          # virtualenv section
   pyenv         # Pyenv section
-  exec_time     # Execution time
   line_sep      # Line break
-  battery       # Battery level and status
   vi_mode       # Vi-mode indicator
   jobs          # Background jobs indicator
   exit_code     # Exit code section
