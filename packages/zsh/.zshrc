@@ -1,3 +1,4 @@
+
 source ~/.zplug/init.zsh
 
 #
@@ -11,9 +12,27 @@ then
     done
 fi
 
-
 if ! zplug check; then
     zplug install
 fi
 
-zplug load #--verbose
+zplug load --verbose
+
+
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stampts section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  golang        # Go section
+  venv          # virtualenv section
+  pyenv         # Pyenv section
+  exec_time     # Execution time
+  line_sep      # Line break
+  battery       # Battery level and status
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)

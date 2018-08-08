@@ -7,6 +7,6 @@ packages:
 - mtag-work
 - fzf
 - fasd
-- liquidprompt
+- spaceship-prompt
 - mc
 - develop

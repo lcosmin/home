@@ -1,0 +1,3 @@
+install:
+  - pattern: 60_spaceship_prompt.zsh
+    dest: ~/.zsh.d
