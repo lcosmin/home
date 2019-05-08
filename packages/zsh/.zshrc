@@ -12,15 +12,13 @@ then
     done
 fi
 
+zplug "modules/gpg", from:prezto, frozen:1
+
 if ! zplug check; then
     zplug install
 fi
 
-zplug load #--verbose
-
-
 SPACESHIP_PROMPT_ORDER=(
-  time          # Time stampts section
   user          # Username section
   dir           # Current directory section
   host          # Hostname section
@@ -29,8 +27,11 @@ SPACESHIP_PROMPT_ORDER=(
   venv          # virtualenv section
   pyenv         # Pyenv section
   line_sep      # Line break
-  vi_mode       # Vi-mode indicator
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
 )
+
+zplug load #--verbose
+
+
