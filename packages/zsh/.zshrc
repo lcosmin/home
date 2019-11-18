@@ -32,6 +32,5 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 
-zplug load #--verbose
-
+zplug load --verbose
 
